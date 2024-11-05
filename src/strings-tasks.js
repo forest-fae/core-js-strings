@@ -349,8 +349,24 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  // case: there are 2 or more words in the given string, and these words are divided by the space key
+  if (str.includes(' ')) {
+    const regex = /[a-z]/gi;
+    const loweredStr = str.match(regex).join('').toLowerCase();
+    const reversedStr = loweredStr.split(' ').reverse().join('');
+    if (loweredStr === reversedStr) {
+      return true;
+    }
+    return false;
+  }
+  // case: just 1 word
+  const lowStr = str.toLowerCase();
+  const palindrome = lowStr.split('').reverse().join('');
+  if (lowStr === palindrome) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -399,8 +415,13 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  return str
+    .split('')
+    .map((el) => {
+      return el === el.toUpperCase() ? el.toLowerCase() : el.toUpperCase();
+    })
+    .join('');
 }
 
 /**
@@ -430,8 +451,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.slice(7, -1);
 }
 
 /**
@@ -445,8 +466,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, -1);
 }
 
 /**
@@ -464,8 +485,8 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -484,8 +505,10 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const code = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
+  return str.replace(/[a-zA-Z]/g, (el) => code[alphabet.indexOf(el)]);
 }
 
 /**
